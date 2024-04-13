@@ -86,6 +86,11 @@ pipeline {
   
         }
 
+      stage ('Deploy to Dev Environment') {
+            steps {
+                  build job: 'ansible-config-artifact/main', parameters: [[$class: 'StringParameterValue', name: 'env', value: 'dev.']], propagate: false, wait: true
+    }
+  }
   }
 }
 
